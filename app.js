@@ -2,12 +2,14 @@ const express = require("express");
 var bodyParser = require("body-parser");
 const axios = require("axios");
 const cors = require("cors");
-require("dotenv").config();
+if(process.env.NODE_ENV!=="production"){
+  require("dotenv").config();
+}
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 const apiKey = process.env.API_KEY;
 const app = express();
 app.use(cors());
-const port = 4000;
+const port = process.env.PORT||3000;
 const ejsMate = require("ejs-mate");
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
