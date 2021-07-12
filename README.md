@@ -3,7 +3,7 @@
 
 
 
-A simple movie recommender website that recommends movies similar to queried movie , build using HTML,CSS, Javascript,Node.js,Express.js and EJS.
+A simple movie recommender website that recommends movies similar to queried movie , build using HTML,CSS, Javascript ,Node.js ,Express.js and EJS.
 
 For Live Demo Go To - https://polar-chamber-42608.herokuapp.com/
 
