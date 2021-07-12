@@ -7,7 +7,7 @@ This website uses TMDB API to get a list of recommended movies for a queried mov
 # Live Demo
 For Live Demo go to https://polar-chamber-42608.herokuapp.com/
 
-# Built With-
+* Built With-
   *TMDB API
   *Bootstrap
   *express
