@@ -9,6 +9,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 const apiKey = process.env.API_KEY;
 const app = express();
 app.use(cors());
+let pageNo=1;
+
 const port = process.env.PORT || 6450;
 const ejsMate = require("ejs-mate");
 app.engine("ejs", ejsMate);
@@ -17,14 +19,19 @@ app.use(express.static(__dirname + "/views"));
 app.use(express.static(__dirname + "/public"));
 // app.use(express.static('public'))
 app.get("/", (req, res) => {
+  if(pageNo!=1)pageNo=1;
   // res.send("hi");
   res.render("index.ejs");
 });
 app.get("/shows", (req, res) => {
-  // res.send("hi");
+  // res.send("hi");  
+  if(pageNo!=1)pageNo=1;
+
   res.render("./shows.ejs");
 });
 app.post("/shows", urlencodedParser, async (req, res) => {
+  if(pageNo!=1)pageNo=1;
+ 
   const { searchTerm } = req.body;
   try {
     var id = await axios({
@@ -34,6 +41,7 @@ app.post("/shows", urlencodedParser, async (req, res) => {
         "Content-Type": "application/json; charset=utf-8",
       },
     });
+   
     var id2 = id.data.results[0]?.id;
     console.log(id2);
     var response = await axios({
@@ -74,6 +82,8 @@ app.post("/shows", urlencodedParser, async (req, res) => {
 });
 
 app.post("/", urlencodedParser, async (req, res) => {
+  if(pageNo!=1)pageNo=1;
+  
   const { searchTerm } = req.body;
   try {
     var id = await axios({
@@ -83,6 +93,7 @@ app.post("/", urlencodedParser, async (req, res) => {
         "Content-Type": "application/json; charset=utf-8",
       },
     });
+    
     var id2 = id.data.results[0]?.id;
 
     var response = await axios({
@@ -113,6 +124,8 @@ app.post("/", urlencodedParser, async (req, res) => {
         finalresult: finalresult,
         getlink: getlink,
         genreId: genreId,
+        pageNo:pageNo,
+        searchTerm:searchTerm
       });
     }
   } catch (error) {
@@ -120,15 +133,17 @@ app.post("/", urlencodedParser, async (req, res) => {
   }
 });
 app.get("/discover", urlencodedParser, async (req, res) => {
+ 
   const { searchTerm } = req.body;
   try {
     var response = await axios({
       method: "get",
-      url: `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.API_KEY}&language=en-US&page=1&include_adult=false`,
+      url: `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.API_KEY}&language=en-US&page=${pageNo}&include_adult=false`,
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
     });
+    pageNo+=1;
     // var id2 = id.data.results[0].id;
 
     // var response = await axios({
@@ -167,6 +182,8 @@ app.get("/discover", urlencodedParser, async (req, res) => {
 });
 
 app.post("/search", urlencodedParser, async (req, res) => {
+  if(pageNo!=1)pageNo=1;
+  
   const { searchTerm } = req.body;
   try {
     var response = await axios({

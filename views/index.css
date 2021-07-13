@@ -93,6 +93,40 @@ h6 {
 .form-group > form > input {
   margin-left: 10px;
 }
+.buttonx { 
+  display:flex; margin-top: 100px;
+  place-content: center;
+  text-align: center;
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #e50914;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 25px;
+  padding: 15px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-weight: bold;
+ 
+ float:center;
+}
+
+.buttonx span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+
+.buttonx:hover span {
+  letter-spacing: 1rem;
+  padding-left: 15px;
+}
+
+
 .card-text {
   margin-bottom: 50px;
   font-weight: bold;
@@ -205,4 +239,7 @@ body {
   background-size: cover;
 
   height: 100vh;
+   
+    place-content: center;
+    text-align: center;
 }
