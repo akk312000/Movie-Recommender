@@ -109,7 +109,7 @@ app.post("/", urlencodedParser, async (req, res) => {
     if (finalresult.entries({}).length === 0) {
       res.render("error");
     } else {
-      res.render("showResult", {
+      res.render("showMovies", {
         finalresult: finalresult,
         getlink: getlink,
         genreId: genreId,
