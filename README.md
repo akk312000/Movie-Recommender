@@ -1,9 +1,9 @@
 # Movie Recommender
-## Get Movie Recommendations Easily
+## Get Movie and TV Shows Recommendations Easily
 
 
 
-A simple movie recommender website that recommends movies similar to queried movie , build using HTML,CSS, Javascript ,Node.js ,Express.js and EJS.
+A simple movie/tv shows recommender website that recommends movies/shows similar to queried movie/show , build using HTML,CSS, Javascript ,Node.js ,Express.js and EJS.
 
 For Live Demo Go To - https://polar-chamber-42608.herokuapp.com/
 
@@ -17,12 +17,13 @@ This website uses TMDB API to get a list of recommended movies for a queried mov
 ## Features
 
 
-- Get Recommendations similar to your favourite movie
+- Get Recommendations similar to your favourite movie/show
 - Watch Trailers
 - Get Average Ratings of a Movie across all platforms
 - Number of Votes of Users
 - Release Date
 - Brief Synopsis of a Movie
+- See what's currently trending in the Discover section
 
 
 
