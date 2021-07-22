@@ -1,4 +1,4 @@
-# Movie Recommender
+# Movie/TV Show Recommender
 ## Get Movie and TV Shows Recommendations Easily
 
 
