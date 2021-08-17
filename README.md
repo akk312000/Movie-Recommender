@@ -3,13 +3,13 @@
 
 
 
-A simple movie/tv shows recommender website that recommends movies/shows similar to queried movie/show , build using HTML,CSS, Javascript ,Node.js ,Express.js and EJS.
+Simple movie/tv shows recommendation site that recommends movies/shows similar to the requested movie/show , built using HTML,CSS, Javascript ,Node.js ,Express.js and EJS.
 
-For Live Demo Go To - https://polar-chamber-42608.herokuapp.com/
+To see a Live Demo Go To - https://polar-chamber-42608.herokuapp.com/
 
-This website uses TMDB API to get a list of recommended movies for a queried movie which is then displayed on the page in a card layout.
-- Built using HTML ,CSS and Javascript
-- EJS for Templating
+This site uses the TMDB API to get a list of recommended movies for a requested movie which is then displayed on the page in a card layout.
+- Built with HTML, CSS and Javascript
+- EJS for creating templates
 - ✨TMDB API ✨
 
 
@@ -17,24 +17,24 @@ This website uses TMDB API to get a list of recommended movies for a queried mov
 ## Features
 
 
-- Get Recommendations similar to your favourite movie/show
+- Get similar Recommendations to your favourite movie/show
 - Watch Trailers
-- Get Average Ratings of a Movie across all platforms
-- Number of Votes of Users
+- Get an average movie rating across all platforms
+- User Ratings
 - Release Date
-- Brief Synopsis of a Movie
-- See what's currently trending in the Discover section
+- Movie Summary
+- Check out current trends in Discover
 
 
 
 
 ## Tech
 
-Movie Recommender uses a number of libraries and frameworks to work properly:
+Movie Recommender uses several libraries and frameworks to work properly:
 
 - [Bootstrap] - Open Source CSS Framework having great UI boilerplate for modern web apps!
-- [TMDB API] - The main crux of the application
-- [axios] - Promise based HTTP client for the browser and node.js.
+- [TMDB API] - Application Key Point 
+- [axios] - Promise based HTTP client for the browsers and node.js.
 - [ejs-mate] - layout, partial and block template functions for the EJS template engine
 - [node.js] - evented I/O for the backend
 - [Express] - fast node.js network app framework 
