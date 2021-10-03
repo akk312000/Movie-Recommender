@@ -59,11 +59,11 @@ Now start the app using ```npm start app.js```
 
 Contributions are what makes the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
- 1.Fork the Project
- 2.Create your Feature Branch (git checkout -b feature/AmazingFeature)
- 3.Commit your Changes (git commit -m 'Add some AmazingFeature')
- 4.Push to the Branch (git push origin feature/AmazingFeature)
- 5.Open a Pull Request
+ - Fork the Project
+ - Create your Feature Branch (git checkout -b feature/AmazingFeature)
+ - Commit your Changes (git commit -m 'Add some AmazingFeature')
+ - Push to the Branch (git push origin feature/AmazingFeature)
+ - Open a Pull Request
  
  Refer to this [resource](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) if you have difficulty creating pull request.
 
