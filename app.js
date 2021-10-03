@@ -40,10 +40,9 @@ app.post("/shows", urlencodedParser, async (req, res) => {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
-    });
+    })
    
     var id2 = id.data.results[0]?.id;
-    console.log(id2);
     var response = await axios({
       url: `https://api.themoviedb.org/3/tv/${id2}/recommendations?api_key=${process.env.API_KEY}&append_to_response=videos&language=en-US&page=1`,
       method: "GET",
@@ -52,7 +51,6 @@ app.post("/shows", urlencodedParser, async (req, res) => {
       },
     });
     var finalresult = response.data.results;
-    console.log(finalresult);
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
@@ -68,8 +66,7 @@ app.post("/shows", urlencodedParser, async (req, res) => {
     if (finalresult.entries({}).length === 0) {
       res.render("error");
     } else {
-      console.log(finalresult);
-      console.log(getlink);
+      
       res.render("showShows", {
         finalresult: finalresult,
         getlink: getlink,
@@ -144,15 +141,7 @@ app.get("/discover", urlencodedParser, async (req, res) => {
       },
     });
     pageNo+=1;
-    // var id2 = id.data.results[0].id;
-
-    // var response = await axios({
-    //   url: `https://api.themoviedb.org/3/movie/${id2}/recommendations?api_key=${process.env.API_KEY}&append_to_response=videos&language=en-US&page=1`,
-    //   method: "GET",
-    //   headers:{
-    //     'Content-Type': 'application/json; charset=utf-8'
-    //   }
-    // });
+    
     var finalresult = response.data.results;
 
     const getlink = [];
@@ -193,17 +182,8 @@ app.post("/search", urlencodedParser, async (req, res) => {
         "Content-Type": "application/json; charset=utf-8",
       },
     });
-    // var id2 = id.data.results[0].id;
-
-    // var response = await axios({
-    //   url: `https://api.themoviedb.org/3/movie/${id2}/recommendations?api_key=${process.env.API_KEY}&append_to_response=videos&language=en-US&page=1`,
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json; charset=utf-8",
-    //   },
-    // });
+   
     var finalresult = response.data.results;
-    // console.log(finalresult);
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
@@ -214,9 +194,7 @@ app.post("/search", urlencodedParser, async (req, res) => {
         },
       });
 
-      // console.log("Hihihihihihihi");
       const newobj = getvideourl.data.results[0];
-      console.log(newobj);
       getlink.push(newobj?.key);
     }
 
