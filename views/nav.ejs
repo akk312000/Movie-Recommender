@@ -1,17 +1,17 @@
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/"
-        ><img class="imageLogo" src="/images/icons8-movie-64.png" />
-        Movie /TV Show Recommender</a
-      >
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="nav-header">
+        <a class="navbar-brand" href="/"><img class="imageLogo" src="/images/icons8-movie-64.png" />
+            Movie /TV Show Recommender</a
+          >
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    </div>
+  
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Movies</a>
+          <a class="nav-link active" href="/">Movies</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/shows">Shows</a>
@@ -19,17 +19,13 @@
         <li class="nav-item">
           <a class="nav-link" href="/discover">Trending</a>
         </li>
-       
-        
       </ul>
-      <form class="d-flex" action="/search" method="POST">
-        <input class="form-control me-2" name="searchTerm" type="search" placeholder="Search a Title" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <form class="form-inline my-2 my-lg-0" action="/seacrh" method="POST">
+        <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search a Title" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
-  </div>
-</nav>
-
+  </nav>
 
 
 <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark " style="background-color:#e50914"!important;">
