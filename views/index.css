@@ -63,6 +63,7 @@
   margin-left: 10px;
   background-color: #f5f5f5;
   width:92vw;
+  min-height:100%;
 }
 .votes {
   float: left;
@@ -189,6 +190,7 @@ h6 {
 }
 .btn-trailer {
   margin-top: auto;
+  margin: 0.2rem;
   right: 20px;
   top: 20px;
   padding: 10px 20px;
