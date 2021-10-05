@@ -24,27 +24,27 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 app.get("/shows", (req, res) => {
-  // res.send("hi");  
+  // res.send("hi");
   if(pageNo!=1)pageNo=1;
 
   res.render("./shows.ejs");
 });
 app.post("/shows", urlencodedParser, async (req, res) => {
   if(pageNo!=1)pageNo=1;
- 
+
   const { searchTerm } = req.body;
   try {
     var id = await axios({
       method: "get",
-      url: `https://api.themoviedb.org/3/search/tv?api_key=${process.env.API_KEY}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
+      url: `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
     })
-   
+
     var id2 = id.data.results[0]?.id;
     var response = await axios({
-      url: `https://api.themoviedb.org/3/tv/${id2}/recommendations?api_key=${process.env.API_KEY}&append_to_response=videos&language=en-US&page=1`,
+      url: `https://api.themoviedb.org/3/tv/${id2}/recommendations?api_key=${apiKey}&append_to_response=videos&language=en-US&page=1`,
       method: "GET",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -54,7 +54,7 @@ app.post("/shows", urlencodedParser, async (req, res) => {
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
-        url: `https://api.themoviedb.org/3/tv/${finalresult[i].id}/videos?api_key=${process.env.API_KEY}`,
+        url: `https://api.themoviedb.org/3/tv/${finalresult[i].id}/videos?api_key=${apiKey}`,
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
@@ -66,7 +66,7 @@ app.post("/shows", urlencodedParser, async (req, res) => {
     if (finalresult.entries({}).length === 0) {
       res.render("error");
     } else {
-      
+
       res.render("showShows", {
         finalresult: finalresult,
         getlink: getlink,
@@ -80,21 +80,21 @@ app.post("/shows", urlencodedParser, async (req, res) => {
 
 app.post("/", urlencodedParser, async (req, res) => {
   if(pageNo!=1)pageNo=1;
-  
+
   const { searchTerm } = req.body;
   try {
     var id = await axios({
       method: "get",
-      url: `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
+      url: `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
     });
-    
+
     var id2 = id.data.results[0]?.id;
 
     var response = await axios({
-      url: `https://api.themoviedb.org/3/movie/${id2}/recommendations?api_key=${process.env.API_KEY}&append_to_response=videos&language=en-US&page=1`,
+      url: `https://api.themoviedb.org/3/movie/${id2}/recommendations?api_key=${apiKey}&append_to_response=videos&language=en-US&page=1`,
       method: "GET",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -105,13 +105,13 @@ app.post("/", urlencodedParser, async (req, res) => {
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
-        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/videos?api_key=${process.env.API_KEY}`,
+        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/videos?api_key=${apiKey}`,
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
         },
       });
-      getlink.push(getvideourl.data.results[0].key);
+      getlink.push(getvideourl.data.results[0]?.key);
     }
 
     if (finalresult.entries({}).length === 0) {
@@ -130,24 +130,24 @@ app.post("/", urlencodedParser, async (req, res) => {
   }
 });
 app.get("/discover", urlencodedParser, async (req, res) => {
- 
+
   const { searchTerm } = req.body;
   try {
     var response = await axios({
       method: "get",
-      url: `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${process.env.API_KEY}&language=en-US&page=${pageNo}&include_adult=false`,
+      url: `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}&language=en-US&page=${pageNo}&include_adult=false`,
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
     });
     pageNo+=1;
-    
+
     var finalresult = response.data.results;
 
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
-        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/videos?api_key=${process.env.API_KEY}`,
+        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/videos?api_key=${apiKey}`,
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
@@ -170,24 +170,63 @@ app.get("/discover", urlencodedParser, async (req, res) => {
   }
 });
 
-app.post("/search", urlencodedParser, async (req, res) => {
-  if(pageNo!=1)pageNo=1;
-  
-  const { searchTerm } = req.body;
+app.get("/top", urlencodedParser, async (req, res) => {
+
   try {
     var response = await axios({
       method: "get",
-      url: `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
+      url: `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page`,
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
     });
-   
+
+    var finalresult = response.data.results;
+
+    const getlink = [];
+    for (let i = 0; i < finalresult.length; i++) {
+      const getvideourl = await axios({
+        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/videos?api_key=${apiKey}`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+      getlink.push(getvideourl.data.results[0]?.key);
+    }
+
+    if (finalresult.entries({}).length === 0) {
+      res.render("error");
+    } else {
+      res.render("showTopRatedMovies", {
+        finalresult: finalresult,
+        getlink: getlink,
+        genreId: genreId,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+app.post("/search", urlencodedParser, async (req, res) => {
+  if(pageNo!=1)pageNo=1;
+
+  const { searchTerm } = req.body;
+  try {
+    var response = await axios({
+      method: "get",
+      url: `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    });
+
     var finalresult = response.data.results;
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
-        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/videos?api_key=${process.env.API_KEY}`,
+        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/videos?api_key=${apiKey}`,
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=utf-8",

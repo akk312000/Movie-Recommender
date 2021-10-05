@@ -1,35 +1,35 @@
-<%- include('header')%> <%- include('nav')%>
- 
+<%- include('header')%> <%- include('nav', {page_name: 'search'})%>
+
 <body>
-  
+
    <div class="cards">
-    <% for(let i=0;i<finalresult.length;i++){ %> 
+    <% for(let i=0;i<finalresult.length;i++){ %>
         <% const pospath=finalresult[i].backdrop_path;let yurl=getlink[i];if(yurl===undefined)continue; %>
     <div class="card" >
       <div class="youtube-player" data-id=<%=yurl%>></div>
         <div class="card-body flex-column ">
-          
+
           <h5 class="card-title" style="text-align: center"><%= (finalresult[i].title)%><h6 class="score">Average Rating: <%= (parseFloat(finalresult[i].vote_average).toFixed(1))%> </h6><h6 class="year"><span class="votes">Total Votes: <%=finalresult[i].vote_count %> </span><span>Release Year: <%=(finalresult[i].release_date).split("-")[0] %> </span></h6></h5>
           <h6 class="Synopsis">Synopsis-</h6>
           <p class="card-text"><%= (finalresult[i].overview).substring(0,400)%>... </p>
        <div class="floatingButtons">
      <%let len=finalresult[i].genre_ids.length;
      if(len>3)len=3;
-     
-     for(let j=0;j<len;j++)  {%>   
+
+     for(let j=0;j<len;j++)  {%>
       <% const val=finalresult[i].genre_ids[j];
       const ap=genreId.genres.find(obj=>obj.id===val).name;
-      
-      %> 
+
+      %>
      <button class="btn-trailer  "><%=ap  %> </button>
- 
-     <% } %> </div>  
-     
-    
-  
+
+     <% } %> </div>
+
+
+
         </div>
-      </div> <% } %> 
-   
+      </div> <% } %>
+
     </div>
 </body>
 <script>
@@ -46,7 +46,7 @@
     );
     iframe.setAttribute('frameborder', '0');
     iframe.setAttribute('allowfullscreen', '1');
-    
+
     iframe.setAttribute(
       'allow',
       'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
