@@ -1,0 +1,102 @@
+<%- include('header')%> <%- include('nav', {page_name: 'top_rated_movies'})%>
+
+<body>
+
+   <div class="cards">
+    <% for(let i=0;i<finalresult.length;i++){ %>
+        <% const pospath=finalresult[i].backdrop_path;let yurl=getlink[i]; if(yurl===undefined)continue;%>
+    <div class="card" >
+      <div class="youtube-player" data-id=<%=yurl%>></div>
+
+        <div class="card-body flex-column ">
+
+          <h5 class="card-title" style="text-align: center"><%= (finalresult[i].title)%><h6 class="score">Average Rating: <%= (parseFloat(finalresult[i].vote_average).toFixed(1))%> </h6><h6 class="year"><span class="votes">Total Votes: <%=finalresult[i].vote_count %> </span>
+            <span>Release Year: <%=(finalresult[i].release_date)?.split("-")[0]  %> </span>
+          </h6></h5>
+          <h6 class="Synopsis">Synopsis-</h6>
+          <p class="card-text"><%= (finalresult[i].overview).substring(0,400)%>... </p>
+       <div class="floatingButtons">
+     <%let len=finalresult[i].genre_ids.length;
+     if(len>3)len=3;
+
+     for(let j=0;j<len;j++)  {%>
+      <% const val=finalresult[i].genre_ids[j];
+      const ap=genreId.genres.find(obj=>obj.id===val)?.name;
+
+
+      %>
+     <button class="btn-trailer  "><%=ap  %> </button>
+
+     <% } %> </div>
+
+
+
+        </div>
+      </div> <% } %>
+
+    </div>
+    <script
+     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+   crossorigin="anonymous"
+ ></script>
+
+ <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+   integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+   crossorigin="anonymous"
+ ></script>
+ <script
+     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+   integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+   crossorigin="anonymous"
+ ></script>
+</body>
+<script>
+  /*
+   * Light YouTube Embeds by @labnol
+   * Credit: https://www.labnol.org/
+   * <iframe width="560" height="315" src="https://www.youtube.com/embed/6LyagkoRWYA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   */
+
+  function labnolIframe(div) {
+    var iframe = document.createElement('iframe');
+    iframe.setAttribute(
+      'src',
+      'https://www.youtube.com/embed/' + div.dataset.id + '?autoplay=1&rel=0'
+    );
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allowfullscreen', '1');
+
+    iframe.setAttribute(
+      'allow',
+      'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+    );
+    div.parentNode.replaceChild(iframe, div);
+  }
+
+  function initYouTubeVideos() {
+    var playerElements = document.getElementsByClassName('youtube-player');
+    for (var n = 0; n < playerElements.length; n++) {
+      var videoId = playerElements[n].dataset.id;
+      var div = document.createElement('div');
+      div.setAttribute('data-id', videoId);
+      var thumbNode = document.createElement('img');
+      thumbNode.src = '//i.ytimg.com/vi/ID/hqdefault.jpg'.replace(
+        'ID',
+        videoId
+      );
+      div.appendChild(thumbNode);
+      var playButton = document.createElement('div');
+      playButton.setAttribute('class', 'play');
+      div.appendChild(playButton);
+      div.onclick = function () {
+        labnolIframe(this);
+        video.requestFullscreen();
+      };
+      playerElements[n].appendChild(div);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initYouTubeVideos);
+</script>
