@@ -111,7 +111,7 @@ app.post("/", urlencodedParser, async (req, res) => {
           "Content-Type": "application/json; charset=utf-8",
         },
       });
-      getlink.push(getvideourl.data.results[0].key);
+      getlink.push(getvideourl.data.results[0]?.key);
     }
 
     if (finalresult.entries({}).length === 0) {
