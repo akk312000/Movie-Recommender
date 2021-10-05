@@ -1,7 +1,7 @@
 <%- include('header')%> <%- include('nav', {page_name: 'shows'})%>
-
-<body>
-
+<script type="text/javascript">
+  document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://www.teahub.io/photos/full/220-2205714_get-the-latest-movies-data-src-kodi-tv.jpg')";
+</script>
    <div class="cards">
     <% for(let i=0;i<finalresult.length;i++){ %>
         <% const pospath=finalresult[i].backdrop_path;let yurl=getlink[i]; if(yurl===undefined)continue;%>
@@ -50,7 +50,7 @@
    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
    crossorigin="anonymous"
  ></script>
-</body>
+
 <script>
 
 
