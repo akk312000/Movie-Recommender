@@ -232,19 +232,15 @@ h6 {
   
 }
 .mainPage {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://wallpapercave.com/wp/wp5483697.jpg');
-  position:relative;
-    
+  margin-top: 240px;
+  /* position:relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://wallpapercave.com/wp/wp5483697.jpg');
     /* background: url("https://wallpapercave.com/wp/wp5483697.jpg") center no-repeat; */
 
-  background-size: cover;
+  /* background-size: cover;
   
-  height: 100vh;
+  height: 100vh; */
   /* background: rgba(0, 0, 0, 0.4); */
-}
-.mainPage.shows{
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://www.teahub.io/photos/full/220-2205714_get-the-latest-movies-data-src-kodi-tv.jpg");
 }
 .cards {
   display: grid;
@@ -285,8 +281,8 @@ h6 {
 
 body {
   position: relative;
-  /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://wallpapercave.com/wp/wp5483697.jpg"); */
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("https://wallpapercave.com/wp/wp5483697.jpg");
   /* background: url("https://wallpapercave.com/wp/wp5483697.jpg") center no-repeat; */
 
   background-size: cover;
