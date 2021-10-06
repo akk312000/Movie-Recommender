@@ -61,7 +61,7 @@ body::-webkit-scrollbar-thumb {
   color: #e50914;
   font-weight: 700;
   background-color:#FFF5EB;
-  
+
 }
 .card-title:hover{
   background-color:#f5e6ca;transition: transform 450ms;
@@ -70,7 +70,7 @@ body::-webkit-scrollbar-thumb {
 .Synopsis {
   color: #476072;
   background-color: #F9F9F9;
-  
+
 }
 .Synopsis:hover{
   background-color: #FFF5DA;transition: transform 450ms;
@@ -85,7 +85,7 @@ body::-webkit-scrollbar-thumb {
 }
 .votes {
   float: left;
-  
+
 }
 h6 {
   font-weight: bolder;
@@ -150,7 +150,7 @@ h6 {
 .form-group > form > input {
   margin-left: 10px;
 }
-.buttonx { 
+.buttonx {
   display:flex; margin-top: 100px;
   place-content: center;
   text-align: center;
@@ -166,7 +166,7 @@ h6 {
   cursor: pointer;
   margin: 5px;
   font-weight: bold;
- 
+
  float:center;
 }
 
@@ -206,6 +206,25 @@ h6 {
   border: none;
   cursor: pointer;
 }
+
+.btn-paggination-disabled{
+  margin: 0.2rem;
+  font-size: 1rem;
+  color: #9f9b9b;
+
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.2vw;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-right: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.3rem;
+  background-color: #750006;
+}
+
+
 .btn-trailer {
   margin-top: auto;
   margin: 0.2rem;
@@ -226,7 +245,6 @@ h6 {
     text-decoration: none;
     color: initial;
   }
-  
 
   outline: none;
   border: none;
@@ -241,13 +259,11 @@ h6 {
   background-color: #e50914;
 }
 .btn-trailer:hover {
-  
-  
     background-color: #F7DBF0;
     color: #000;
     transition: all 0.2s;transition: transform 450ms;
     transform: scale(1.03);
-  
+
 }
 .mainPage {
   margin-top: 240px;
@@ -256,7 +272,7 @@ h6 {
     /* background: url("https://wallpapercave.com/wp/wp5483697.jpg") center no-repeat; */
 
   /* background-size: cover;
-  
+
   height: 100vh; */
   /* background: rgba(0, 0, 0, 0.4); */
 }
@@ -297,6 +313,16 @@ h6 {
 .floatingButtons {
   bottom: 10px;
   position: absolute;
+}
+
+.paggination_wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center
+}
+.paggination{
+  margin-bottom: 10px;
+  display: flex;
 }
 
 body {

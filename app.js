@@ -79,29 +79,32 @@ app.post("/shows", urlencodedParser, async (req, res) => {
 });
 
 app.post("/", urlencodedParser, async (req, res) => {
-  if(pageNo!=1)pageNo=1;
 
-  const { searchTerm } = req.body;
+  const { searchTerm, currentPage = 1} = req.body;
+
   try {
-    var id = await axios({
-      method: "get",
-      url: `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-    });
-
-    var id2 = id.data.results[0]?.id;
+    if(req.body.tvID){
+      tvID = req.body.tvID;
+    }else{
+      var id = await axios({
+        method: "get",
+        url: `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+      var tvID = id.data.results[0]?.id;
+    }
 
     var response = await axios({
-      url: `https://api.themoviedb.org/3/movie/${id2}/recommendations?api_key=${apiKey}&append_to_response=videos&language=en-US&page=1`,
+      url: `https://api.themoviedb.org/3/movie/${tvID}/recommendations?api_key=${apiKey}&append_to_response=videos&language=en-US&page=${currentPage}`,
       method: "GET",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
     });
     var finalresult = response.data.results;
-
+    const totalPages = response.data.total_pages;
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
@@ -122,7 +125,10 @@ app.post("/", urlencodedParser, async (req, res) => {
         getlink: getlink,
         genreId: genreId,
         pageNo:pageNo,
-        searchTerm:searchTerm
+        searchTerm:searchTerm,
+        total_pages: totalPages,
+        current_page: currentPage,
+        tvID: tvID,
       });
     }
   } catch (error) {

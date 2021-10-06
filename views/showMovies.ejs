@@ -1,41 +1,57 @@
 <%- include('header')%> <%- include('nav', {page_name: 'movies'})%>
-
-<body>
-
-   <div class="cards">
-
-
-
-    <% for(let i=0;i<finalresult.length;i++){ %>
-        <% const pospath=finalresult[i].backdrop_path;let yurl=getlink[i]; %>
+<div class="cards">
+  <% for(let i=0;i<finalresult.length;i++){ %>
+    <% const pospath=finalresult[i].backdrop_path;let yurl=getlink[i]; %>
     <div class="card">
       <div class="youtube-player" data-id=<%=yurl%>></div>
-        <div class="card-body flex-column ">
+      <div class="card-body flex-column ">
+        <h5 class="card-title" style="text-align: center"><%= (finalresult[i].title)%>
+          <h6 class="score">Average Rating: <%= (parseFloat(finalresult[i].vote_average).toFixed(1))%></h6>
+          <h6 class="year">
+            <span class="votes">Total Votes: <%=finalresult[i].vote_count %> </span>
+            <span>Release Year: <%=(finalresult[i].release_date).split("-")[0] %> </span>
+          </h6>
+        </h5>
+        <h6 class="Synopsis">Synopsis-</h6>
+        <p class="card-text"><%= (finalresult[i].overview).substring(0,400)%>... </p>
+        <div class="floatingButtons">
+          <%let len=finalresult[i].genre_ids.length;
+          if(len>3)len=3;
 
-          <h5 class="card-title" style="text-align: center"><%= (finalresult[i].title)%><h6 class="score">Average Rating: <%= (parseFloat(finalresult[i].vote_average).toFixed(1))%> </h6><h6 class="year"><span class="votes">Total Votes: <%=finalresult[i].vote_count %> </span><span>Release Year: <%=(finalresult[i].release_date).split("-")[0] %> </span></h6></h5>
-          <h6 class="Synopsis">Synopsis-</h6>
-          <p class="card-text"><%= (finalresult[i].overview).substring(0,400)%>... </p>
-       <div class="floatingButtons">
-     <%let len=finalresult[i].genre_ids.length;
-     if(len>3)len=3;
+          for(let j=0;j<len;j++)  {%>
+            <% const val=finalresult[i].genre_ids[j];
+            const ap=genreId.genres.find(obj=>obj.id===val).name;
 
-     for(let j=0;j<len;j++)  {%>
-      <% const val=finalresult[i].genre_ids[j];
-      const ap=genreId.genres.find(obj=>obj.id===val).name;
+            %>
+          <button class="btn-trailer  "><%=ap  %> </button>
 
-      %>
-     <button class="btn-trailer  "><%=ap  %> </button>
-
-     <% } %> </div>
-
-
-
+          <% } %>
         </div>
-      </div> <% } %>
-
+      </div>
     </div>
+  <% } %>
+</div>
 
-</body>
+<div class="paggination_wrapper">
+  <div class="paggination">
+    <% for(let i = 1; i <= total_pages; i++){
+      if (i == current_page){
+      %>
+        <button class="btn-paggination-disabled" disabled="disabled"><%= i %> </button>
+      <%
+      } else {
+      %>
+      <form  action="/" method="POST">
+        <input name="currentPage" hidden="true" type="hidden" value="<%= i %>"/>
+        <input name="tvID" hidden="true" type="hidden" value="<%= tvID %>"/>
+        <button type="submit" class="btn-trailer"><%= i %> </button>
+      </form>
+      <%
+      }
+    } %>
+  </div>
+</div>
+
 <script>
   /*
    * Light YouTube Embeds by @labnol
