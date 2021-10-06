@@ -84,19 +84,7 @@ app.post("/shows", urlencodedParser, async (req, res) => {
 
 app.post("/", urlencodedParser, async (req, res) => {
 
-
   const { searchTerm, currentPage = 1} = req.body;
-
-
-  try {
-    var id = await axios({
-      method: "get",
-      url: `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-    });
-
 
   try {
     if(req.body.tvID){
