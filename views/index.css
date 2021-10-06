@@ -14,6 +14,14 @@ body::-webkit-scrollbar-thumb {
     align-items:center;
 }
 
+.navbar-fixed-top{
+  top: 0;
+  position: fixed;
+  z-index: 1030;
+  right: 0;
+  left: 0;
+}
+
 .navbar-toggler{
     margin-right:0.5rem;
     flex:1;
@@ -21,6 +29,7 @@ body::-webkit-scrollbar-thumb {
 
 .navbar-brand{
     flex:1;
+    margin-left: 0.5rem;
 }
 
 .navbar-brand{
@@ -257,6 +266,8 @@ h6 {
   transition: transform 450ms;
   grid-gap: 1rem;
   /* margin-left:-80px; */
+  margin-top: 3em;
+  margin-bottom: 2.5em;
 }
 @media (min-width: 600px) {
   .cards {
@@ -293,11 +304,9 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("https://wallpapercave.com/wp/wp5483697.jpg");
   /* background: url("https://wallpapercave.com/wp/wp5483697.jpg") center no-repeat; */
-
   background-size: cover;
-
-  height: 100vh;
-   
-    place-content: center;
-    text-align: center;
+  place-content: center;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
