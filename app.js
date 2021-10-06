@@ -19,38 +19,40 @@ app.use(express.static(__dirname + "/views"));
 app.use(express.static(__dirname + "/public"));
 // app.use(express.static('public'))
 app.get("/", (req, res) => {
-  if(pageNo!=1)pageNo=1;
   // res.send("hi");
   res.render("index.ejs");
 });
 app.get("/shows", (req, res) => {
   // res.send("hi");
-  if(pageNo!=1)pageNo=1;
-
   res.render("./shows.ejs");
 });
 app.post("/shows", urlencodedParser, async (req, res) => {
-  if(pageNo!=1)pageNo=1;
 
-  const { searchTerm } = req.body;
+  const { searchTerm, currentPage = 1} = req.body;
+
   try {
-    var id = await axios({
-      method: "get",
-      url: `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-    })
+    if(req.body.tvID){
+      tvID = req.body.tvID;
+    }else{
+      var id = await axios({
+        method: "get",
+        url: `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      })
+      var tvID = id.data.results[0]?.id;
+    }
 
-    var id2 = id.data.results[0]?.id;
     var response = await axios({
-      url: `https://api.themoviedb.org/3/tv/${id2}/recommendations?api_key=${apiKey}&append_to_response=videos&language=en-US&page=1`,
+      url: `https://api.themoviedb.org/3/tv/${tvID}/recommendations?api_key=${apiKey}&append_to_response=videos&language=en-US&page=${currentPage}`,
       method: "GET",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
     });
     var finalresult = response.data.results;
+    const totalPages = response.data.total_pages;
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
@@ -66,11 +68,13 @@ app.post("/shows", urlencodedParser, async (req, res) => {
     if (finalresult.entries({}).length === 0) {
       res.render("error");
     } else {
-
       res.render("showShows", {
         finalresult: finalresult,
         getlink: getlink,
         genreId: genreId,
+        total_pages: totalPages,
+        current_page: currentPage,
+        tvID: tvID,
       });
     }
   } catch (error) {
@@ -80,7 +84,19 @@ app.post("/shows", urlencodedParser, async (req, res) => {
 
 app.post("/", urlencodedParser, async (req, res) => {
 
+
   const { searchTerm, currentPage = 1} = req.body;
+
+
+  try {
+    var id = await axios({
+      method: "get",
+      url: `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${searchTerm}`,
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    });
+
 
   try {
     if(req.body.tvID){

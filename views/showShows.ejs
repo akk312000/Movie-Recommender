@@ -2,58 +2,74 @@
 <script type="text/javascript">
   document.body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://www.teahub.io/photos/full/220-2205714_get-the-latest-movies-data-src-kodi-tv.jpg')";
 </script>
-   <div class="cards">
-    <% for(let i=0;i<finalresult.length;i++){ %>
-        <% const pospath=finalresult[i].backdrop_path;let yurl=getlink[i]; if(yurl===undefined)continue;%>
-    <div class="card" >
-      <div class="youtube-player" data-id=<%=yurl%>></div>
+<div class="cards">
+<% for(let i=0;i<finalresult.length;i++){ %>
+  <% const pospath=finalresult[i].backdrop_path;let yurl=getlink[i]; if(yurl===undefined)continue;%>
+  <div class="card" >
+    <div class="youtube-player" data-id=<%=yurl%>></div>
+    <div class="card-body flex-column ">
 
-        <div class="card-body flex-column ">
+      <h5 class="card-title" style="text-align: center"><%= (finalresult[i].name)%>
+        <h6 class="score">Average Rating: <%= (parseFloat(finalresult[i].vote_average).toFixed(1))%> </h6>
+        <h6 class="year">
+          <span class="votes">Total Votes: <%=finalresult[i].vote_count %> </span>
+          <span>First Air Date: <%=(finalresult[i].first_air_date) %> </span>
+        </h6>
+      </h5>
+      <h6 class="Synopsis">Synopsis-</h6>
+      <p class="card-text"><%= (finalresult[i].overview).substring(0,400)%>... </p>
+      <div class="floatingButtons">
+        <%let len=finalresult[i].genre_ids.length;
+        if(len>3)len=3;
 
-          <h5 class="card-title" style="text-align: center"><%= (finalresult[i].name)%><h6 class="score">Average Rating: <%= (parseFloat(finalresult[i].vote_average).toFixed(1))%> </h6><h6 class="year"><span class="votes">Total Votes: <%=finalresult[i].vote_count %> </span>
-            <span>First Air Date: <%=(finalresult[i].first_air_date) %> </span>
-          </h6></h5>
-          <h6 class="Synopsis">Synopsis-</h6>
-          <p class="card-text"><%= (finalresult[i].overview).substring(0,400)%>... </p>
-       <div class="floatingButtons">
-     <%let len=finalresult[i].genre_ids.length;
-     if(len>3)len=3;
-
-     for(let j=0;j<len;j++)  {%>
-      <% const val=finalresult[i].genre_ids[j];
-      const ap=genreId.genres.find(obj=>obj.id===val)?.name;
-
-
-      %>
-     <button class="btn-trailer  "><%=ap  %> </button>
-
-     <% } %> </div>
-
-
-
-        </div>
-      </div> <% } %>
-
+        for(let j=0;j<len;j++)  {%>
+          <% const val=finalresult[i].genre_ids[j];
+          const ap=genreId.genres.find(obj=>obj.id===val)?.name;
+          %>
+          <button class="btn-trailer"><%=ap  %> </button>
+        <% } %>
+      </div>
     </div>
+  </div>
+<% } %>
+</div>
 
-    <script
-     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-   crossorigin="anonymous"
- ></script> <script
-    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-   integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-   crossorigin="anonymous"
- ></script>
+<div class="paggination_wrapper">
+  <div class="paggination">
+    <% for(let i = 1; i <= total_pages; i++){
+      if (i == current_page){
+      %>
+        <button class="btn-paggination-disabled" disabled="disabled"><%= i %> </button>
+      <%
+      } else {
+      %>
+      <form  action="/shows" method="POST">
+        <input name="currentPage" hidden="true" type="hidden" value="<%= i %>"/>
+        <input name="tvID" hidden="true" type="hidden" value="<%= tvID %>"/>
+        <button type="submit" class="btn-trailer"><%= i %> </button>
+      </form>
+      <%
+      }
+    } %>
+  </div>
+</div>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous">
+</script>
  <script
-     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-   integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-   crossorigin="anonymous"
- ></script>
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+  crossorigin="anonymous">
+</script>
+ <script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+  integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+  crossorigin="anonymous">
+</script>
 
 <script>
-
-
   function labnolIframe(div) {
     var iframe = document.createElement('iframe');
     iframe.setAttribute(
