@@ -1,50 +1,56 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-    <div class="nav-header">
-        <a class="navbar-brand" href="/"><img class="imageLogo" src="/images/icons8-movie-64.png" />
-            Movie /TV Show Recommender</a
-          >
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-    </div>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+  <div class="nav-header">
+    <a class="navbar-brand mx-5" href="/">
+      <img class="imageLogo" src="/images/icons8-movie-64.png" />
+      <span> Movie /TV Show Recommender</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a <% if (page_name === 'movies') { %>
-            class="nav-link active"
-            <%} else { %>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a <% if (page_name==='movies' ) { %>
+          class="nav-link active"
+          <%} else { %>
             class="nav-link"
-            <% } %> href="/">Movies</a>
-        </li>
-        <li class="nav-item">
-          <a <% if (page_name === 'shows') { %>
-            class="nav-link active"
-            <%} else { %>
+            <% } %> href="/">Movies
+        </a>
+      </li>
+      <li class="nav-item">
+        <a <% if (page_name==='shows' ) { %>
+          class="nav-link active"
+          <%} else { %>
             class="nav-link"
-            <% } %> href="/shows">Shows</a>
-        </li>
-        <li class="nav-item">
-          <a <% if (page_name === 'trendig') { %>
-            class="nav-link active"
-            <%} else { %>
+            <% } %> href="/shows">Shows
+        </a>
+      </li>
+      <li class="nav-item">
+        <a <% if (page_name==='trendig' ) { %>
+          class="nav-link active"
+          <%} else { %>
             class="nav-link"
-            <% } %> href="/discover">Trending</a>
-        </li>
-        <li class="nav-item">
-          <a <% if (page_name === 'top_rated_movies') { %>
-            class="nav-link active"
-            <%} else { %>
+            <% } %> href="/discover">Trending
+        </a>
+      </li>
+      <li class="nav-item">
+        <a <% if (page_name==='top_rated_movies' ) { %>
+          class="nav-link active"
+          <%} else { %>
             class="nav-link"
-            <% } %> href="/top">Top Rated Movies</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
-        <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search a Title" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
+            <% } %> href="/top">Top Rated Movies
+        </a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0 mx-2" action="/search" method="POST">
+      <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search a Title"
+        aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav> -->
 
 
 <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark " style="background-color:#e50914"!important;">
@@ -81,3 +87,55 @@
       </div>
     </div>
   </nav> -->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand " href="/">
+    <img class="imageLogo" src="/images/icons8-movie-64.png" />
+    <span> Movie /TV Show Recommender</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto mx-5">
+      <li class="nav-item">
+        <a <% if (page_name==='movies' ) { %>
+          class="nav-link active"
+          <%} else { %>
+            class="nav-link"
+            <% } %> href="/">Movies
+        </a>
+      </li>
+      <li class="nav-item">
+        <a <% if (page_name==='shows' ) { %>
+          class="nav-link active"
+          <%} else { %>
+            class="nav-link"
+            <% } %> href="/shows">Shows
+        </a>
+      </li>
+      <li class="nav-item">
+        <a <% if (page_name==='trendig' ) { %>
+          class="nav-link active"
+          <%} else { %>
+            class="nav-link"
+            <% } %> href="/discover">Trending
+        </a>
+      </li>
+      <li class="nav-item">
+        <a <% if (page_name==='top_rated_movies' ) { %>
+          class="nav-link active"
+          <%} else { %>
+            class="nav-link"
+            <% } %> href="/top">Top Rated Movies
+        </a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
+      <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search a Title" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
