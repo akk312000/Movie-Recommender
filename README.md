@@ -50,10 +50,13 @@ Movie Recommender requires [Node.js](https://nodejs.org/) v10+ to run.
 
 Download the ZIP file, install the dependencies using ```npm i```.
 
-
 Go to [TMDB API] get your API KEY and put it on .env file
 
-Now start the app using ```npm start app.js```
+Now start the app using ```nodemon app.js```
+
+This app starts a server and listens on port 6450 for connections. 
+
+Go to http://localhost:6450/ and make your changes.
 
 ## Contributing
 
