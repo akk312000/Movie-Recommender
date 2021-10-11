@@ -205,6 +205,21 @@ h6 {
   font-weight: 600;
   border: none;
   cursor: pointer;
+  box-shadow: 0 5px #811212;
+  display: inline-block;
+  opacity: 0.9;
+}
+.btn-form:hover{
+  opacity: 1;
+  color: #fff;
+  text-decoration: none;
+  background-color: rgb(202, 6, 6);
+  transition:  all 500ms;
+}
+.btn-form:active {
+  position:sticky;
+  box-shadow: none;
+  transform: translateY(5px);
 }
 
 .btn-paggination-disabled{
