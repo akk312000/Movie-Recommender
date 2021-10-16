@@ -2,6 +2,7 @@ const express = require("express");
 var bodyParser = require("body-parser");
 const axios = require("axios");
 const cors = require("cors");
+
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
@@ -192,7 +193,7 @@ app.get("/top", urlencodedParser, async (req, res) => {
     });
 
     var finalresult = response.data.results;
-
+    const getReviews = [];
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
@@ -202,6 +203,14 @@ app.get("/top", urlencodedParser, async (req, res) => {
           "Content-Type": "application/json; charset=utf-8",
         },
       });
+      const getReview = await axios({
+        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/reviews?api_key=${apiKey}&language=en-US&page=1`,
+        method: "GET",
+        headers:{
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+      getReviews.push(getReview.data.results[0]?.author);
       getlink.push(getvideourl.data.results[0]?.key);
     }
 
@@ -210,10 +219,26 @@ app.get("/top", urlencodedParser, async (req, res) => {
     } else {
       res.render("showTopRatedMovies", {
         finalresult: finalresult,
+        getReviews: getReviews,
         getlink: getlink,
         genreId: genreId,
       });
     }
+    
+  const cardContent = Document.querySelectorAll('.Modalbtn');
+    for(var a of cardContent){
+      a.addEventListener('click', async function(){alert(apiKey);
+        let Movieid = a.previouElementSibling.innerText;
+        const Review = await axios({
+          url: `https://api.themoviedb.org/3/movie/${Movieid}/reviews?api_key=${apiKey}&language=en-US&page=1`,
+          method: "GET",
+          headers:{
+            "Content-Type": "application/json; charset=utf-8",
+          },
+        });
+      })
+    }
+    
   } catch (error) {
     console.error(error);
   }
@@ -260,6 +285,7 @@ app.post("/search", urlencodedParser, async (req, res) => {
     console.error(error);
   }
 });
+
 app.listen(port, () => {
   console.log("app is running");
 });
