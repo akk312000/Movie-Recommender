@@ -4,7 +4,7 @@
 
    <div class="cards">
     <% for(let i=0;i<finalresult.length;i++){ %>
-        <% const pospath=finalresult[i].backdrop_path;let yurl=getlink[i];if(yurl===undefined)continue; %>
+        <% const pospath=finalresult[i].backdrop_path;let yurl=getlink[i]; let dataUrl = getReviews[i]; if(yurl===undefined)continue; %>
     <div class="card" >
       <div class="youtube-player" data-id=<%=yurl%>></div>
         <div class="card-body flex-column ">
@@ -12,6 +12,10 @@
           <h5 class="card-title" style="text-align: center"><%= (finalresult[i].title)%><h6 class="score">Average Rating: <%= (parseFloat(finalresult[i].vote_average).toFixed(1))%> </h6><h6 class="year"><span class="votes">Total Votes: <%=finalresult[i].vote_count %> </span><span>Release Year: <%=(finalresult[i].release_date).split("-")[0] %> </span></h6></h5>
           <h6 class="Synopsis">Synopsis-</h6>
           <p class="card-text"><%= (finalresult[i].overview).substring(0,400)%>... </p>
+          <p id="MovieID">Reviews</p>
+          <button onclick = "window.location.href = '<%=dataUrl[0]%>'" class = "btn btn-trailer btn-small reviewBtn">First Reviews</button>
+          <button onclick = "window.location.href = '<%=dataUrl[1]%>'" class = "btn btn-trailer btn-small reviewBtn">Second Reviews</button>
+          <button onclick = "window.location.href = '<%=dataUrl[2]%>'" class = "btn btn-trailer btn-small reviewBtn">Third Reviews</button>
        <div class="floatingButtons">
      <%let len=finalresult[i].genre_ids.length;
      if(len>3)len=3;
