@@ -356,7 +356,10 @@ h6 {
   bottom: 10px;
   position: absolute;
 }
-
+.ReviewButtons{
+  bottom: 30px;
+  position: relative;
+}
 .paggination_wrapper {
   display: flex;
   justify-content: center;
