@@ -2,6 +2,7 @@ const express = require("express");
 var bodyParser = require("body-parser");
 const axios = require("axios");
 const cors = require("cors");
+
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
@@ -53,6 +54,7 @@ app.post("/shows", urlencodedParser, async (req, res) => {
     });
     var finalresult = response.data.results;
     const totalPages = response.data.total_pages;
+    const getReviews = [];
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
@@ -62,6 +64,18 @@ app.post("/shows", urlencodedParser, async (req, res) => {
           "Content-Type": "application/json; charset=utf-8",
         },
       });
+      const getReview = await axios({
+        url: `https://api.themoviedb.org/3/tv/${finalresult[i].id}/reviews?api_key=${apiKey}&language=en-US&page=1`,
+        method: "GET",
+        headers:{
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+        const reviews = [];
+        for(let j = 0; j < 3; j++){
+          reviews.push(getReview.data.results[j]?.url);
+        }
+      getReviews[i] = reviews;
       getlink.push(getvideourl.data.results[0]?.key);
     }
 
@@ -70,6 +84,7 @@ app.post("/shows", urlencodedParser, async (req, res) => {
     } else {
       res.render("showShows", {
         finalresult: finalresult,
+        getReviews: getReviews,
         getlink: getlink,
         genreId: genreId,
         total_pages: totalPages,
@@ -109,6 +124,7 @@ app.post("/", urlencodedParser, async (req, res) => {
     });
     var finalresult = response.data.results;
     const totalPages = response.data.total_pages;
+    const getReviews = [];
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
@@ -118,6 +134,18 @@ app.post("/", urlencodedParser, async (req, res) => {
           "Content-Type": "application/json; charset=utf-8",
         },
       });
+      const getReview = await axios({
+        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/reviews?api_key=${apiKey}&language=en-US&page=1`,
+        method: "GET",
+        headers:{
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+        const reviews = [];
+        for(let j = 0; j < 3; j++){
+          reviews.push(getReview.data.results[j]?.url);
+        }
+      getReviews[i] = reviews;
       getlink.push(getvideourl.data.results[0]?.key);
     }
 
@@ -126,6 +154,7 @@ app.post("/", urlencodedParser, async (req, res) => {
     } else {
       res.render("showMovies", {
         finalresult: finalresult,
+        getReviews: getReviews,
         getlink: getlink,
         genreId: genreId,
         pageNo:pageNo,
@@ -153,7 +182,7 @@ app.get("/discover", urlencodedParser, async (req, res) => {
     pageNo+=1;
 
     var finalresult = response.data.results;
-
+    const getReviews = [];
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
@@ -163,6 +192,18 @@ app.get("/discover", urlencodedParser, async (req, res) => {
           "Content-Type": "application/json; charset=utf-8",
         },
       });
+      const getReview = await axios({
+        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/reviews?api_key=${apiKey}&language=en-US&page=1`,
+        method: "GET",
+        headers:{
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+        const reviews = [];
+        for(let j = 0; j < 3; j++){
+          reviews.push(getReview.data.results[j]?.url);
+        }
+      getReviews[i] = reviews;
       getlink.push(getvideourl.data.results[0]?.key);
     }
 
@@ -171,6 +212,7 @@ app.get("/discover", urlencodedParser, async (req, res) => {
     } else {
       res.render("showTrending", {
         finalresult: finalresult,
+        getReviews: getReviews,
         getlink: getlink,
         genreId: genreId,
       });
@@ -192,7 +234,7 @@ app.get("/top", urlencodedParser, async (req, res) => {
     });
 
     var finalresult = response.data.results;
-
+    const getReviews = [];
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
@@ -202,6 +244,18 @@ app.get("/top", urlencodedParser, async (req, res) => {
           "Content-Type": "application/json; charset=utf-8",
         },
       });
+      const getReview = await axios({
+        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/reviews?api_key=${apiKey}&language=en-US&page=1`,
+        method: "GET",
+        headers:{
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+        const reviews = [];
+        for(let j = 0; j < 3; j++){
+          reviews.push(getReview.data.results[j]?.url);
+        }
+      getReviews[i] = reviews;
       getlink.push(getvideourl.data.results[0]?.key);
     }
 
@@ -210,10 +264,12 @@ app.get("/top", urlencodedParser, async (req, res) => {
     } else {
       res.render("showTopRatedMovies", {
         finalresult: finalresult,
+        getReviews: getReviews,
         getlink: getlink,
         genreId: genreId,
       });
     }
+    
   } catch (error) {
     console.error(error);
   }
@@ -233,6 +289,7 @@ app.post("/search", urlencodedParser, async (req, res) => {
     });
 
     var finalresult = response.data.results;
+    const getReviews = [];
     const getlink = [];
     for (let i = 0; i < finalresult.length; i++) {
       const getvideourl = await axios({
@@ -242,7 +299,18 @@ app.post("/search", urlencodedParser, async (req, res) => {
           "Content-Type": "application/json; charset=utf-8",
         },
       });
-
+      const getReview = await axios({
+        url: `https://api.themoviedb.org/3/movie/${finalresult[i].id}/reviews?api_key=${apiKey}&language=en-US&page=1`,
+        method: "GET",
+        headers:{
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+        const reviews = [];
+        for(let j = 0; j < 3; j++){
+          reviews.push(getReview.data.results[j]?.url);
+        }
+      getReviews[i] = reviews;
       const newobj = getvideourl.data.results[0];
       getlink.push(newobj?.key);
     }
@@ -252,6 +320,7 @@ app.post("/search", urlencodedParser, async (req, res) => {
     } else {
       res.render("showSearch", {
         finalresult: finalresult,
+        getReviews: getReviews,
         getlink: getlink,
         genreId: genreId,
       });
@@ -260,6 +329,7 @@ app.post("/search", urlencodedParser, async (req, res) => {
     console.error(error);
   }
 });
+
 app.listen(port, () => {
   console.log("app is running");
 });

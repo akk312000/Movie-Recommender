@@ -93,9 +93,19 @@ body::-webkit-scrollbar-thumb {
   transition: transform 450ms;
   transform: scale(1.03);
 }
+.AllReviews{
+  color: #476072;
+  background-color: #f9f9f9;
+}
+.AllReviews:hover {
+  background-color: #fff5da;
+  transition: transform 450ms;
+  transform: scale(1.03);
+}
 .card {
   margin-top: 30px;
   margin-left: 10px;
+  margin-bottom: 1em;
   background-color: #f5f5f5;
   width: 92vw;
   min-height: 100%;
@@ -346,7 +356,10 @@ h6 {
   bottom: 10px;
   position: absolute;
 }
-
+.ReviewButtons{
+  bottom: 30px;
+  position: relative;
+}
 .paggination_wrapper {
   display: flex;
   justify-content: center;
