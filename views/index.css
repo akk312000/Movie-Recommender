@@ -1,62 +1,80 @@
 body::-webkit-scrollbar {
   width: 0.25rem;
 }
+
 body::-webkit-scrollbar-track {
   background: #1e1e24;
 }
+
 body::-webkit-scrollbar-thumb {
   background: #2c82f1;
 }
+
 .navbar {
   position: unset !important;
   background: rgba(0, 0, 0, 0.856) !important;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.4rem;
 }
+
 .navbar-brand span {
   font-size: 1.4rem;
 }
-.nav-item{
+
+.nav-item {
   margin: 0 1.2rem;
 }
 
-.slider{
-  position:absolute;
-  width:100%;
-  height:4px;
+.slider {
+  position: absolute;
+  width: 100%;
+  height: 4px;
   overflow-x: hidden;
 }
 
-.line{
-  position:absolute;
+.line {
+  position: absolute;
   opacity: 0.4;
-  background:#9f9f9f;
-  width:150%;
-  height:4px;
+  background: #9f9f9f;
+  width: 150%;
+  height: 4px;
 }
 
-.subline{
-  position:absolute;
-  background:#ffffff;
-  height:4px; 
+.subline {
+  position: absolute;
+  background: #ffffff;
+  height: 4px;
 }
-.inc{
-animation: increase 2s infinite;
+
+.inc {
+  animation: increase 2s infinite;
 }
-.dec{
-animation: decrease 2s 0.5s infinite;
+
+.dec {
+  animation: decrease 2s 0.5s infinite;
 }
 
 @keyframes increase {
- from { left: -5%; width: 5%; }
- to { left: 130%; width: 100%;}
+  from {
+    left: -5%;
+    width: 5%;
+  }
+  to {
+    left: 130%;
+    width: 100%;
+  }
 }
+
 @keyframes decrease {
- from { left: -80%; width: 80%; }
- to { left: 110%; width: 10%;}
+  from {
+    left: -80%;
+    width: 80%;
+  }
+  to {
+    left: 110%;
+    width: 10%;
+  }
 }
-
-
 
 /* .nav-header{
     display:flex;
@@ -91,6 +109,7 @@ animation: decrease 2s 0.5s infinite;
 .navbar-nav > li > a:hover {
   color:blueviolet !important;
 } */
+
 /* .navbar-fixed-top{
   top: 0;
   position: fixed;
@@ -117,29 +136,35 @@ animation: decrease 2s 0.5s infinite;
   font-weight: 700;
   background-color: #fff5eb;
 }
+
 .card-title:hover {
   background-color: #f5e6ca;
   transition: transform 450ms;
   transform: scale(1.03);
 }
+
 .Synopsis {
   color: #476072;
   background-color: #f9f9f9;
 }
+
 .Synopsis:hover {
   background-color: #fff5da;
   transition: transform 450ms;
   transform: scale(1.03);
 }
-.AllReviews{
+
+.AllReviews {
   color: #476072;
   background-color: #f9f9f9;
 }
+
 .AllReviews:hover {
   background-color: #fff5da;
   transition: transform 450ms;
   transform: scale(1.03);
 }
+
 .card {
   margin-top: 30px;
   margin-left: 10px;
@@ -148,19 +173,23 @@ animation: decrease 2s 0.5s infinite;
   width: 92vw;
   min-height: 100%;
 }
+
 .votes {
   float: left;
 }
+
 h6 {
   font-weight: bolder;
   color: #334257;
   margin-left: 10px;
 }
+
 .card:hover {
   transition: transform 450ms;
   transform: scale(1.03);
   opacity: 1;
 }
+
 .search_body {
   position: absolute;
   top: 30%;
@@ -174,6 +203,7 @@ h6 {
   padding: 20px;
   margin-top: 15rem;
 }
+
 .score {
   text-align: left;
   background-color: #f9f9f9;
@@ -184,24 +214,27 @@ h6 {
   transition: transform 450ms;
   transform: scale(1.03);
 }
+
 .year {
   text-align: right;
   background-color: #fff1f1;
 }
+
 .year:hover {
   background-color: #ffdada;
   transition: transform 450ms;
   transform: scale(1.03);
 }
+
 .card-img-top {
   height: 300px;
   width: 380px;
   display: block;
-
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
+
 .posButtons {
   margin-top: 30px;
 }
@@ -214,15 +247,25 @@ h6 {
   border: none;
   max-width: 600px;
 }
-.form-group > form > input {
+
+@media (max-width: 1000px){
+  .ratings {
+    width: 90%;
+    margin-bottom: 15px;
+    max-width: 300px;
+  }
+}
+
+.form-group>form>input {
   margin-left: 10px;
 }
+
 .buttonx {
   display: flex;
   margin-top: 100px;
   place-content: center;
   text-align: center;
-  display: inline-block;
+  display: block;
   border-radius: 5px;
   background-color: #e50914;
   color: #ffffff;
@@ -234,7 +277,6 @@ h6 {
   cursor: pointer;
   margin: 5px;
   font-weight: bold;
-
   float: center;
 }
 
@@ -255,11 +297,13 @@ h6 {
   font-weight: bold;
   color: #4f0e0e;
 }
+
 .card-text:hover {
   transition: transform 450ms;
   transform: scale(1.03);
   background-color: #faf1e6;
 }
+
 .btn-form {
   right: 20px;
   margin-left: 10px;
@@ -275,15 +319,17 @@ h6 {
   display: inline-block;
   opacity: 0.9;
 }
-.btn-form:hover{
+
+.btn-form:hover {
   opacity: 1;
   color: #fff;
   text-decoration: none;
   background-color: rgb(202, 6, 6);
-  transition:  all 500ms;
+  transition: all 500ms;
 }
+
 .btn-form:active {
-  position:sticky;
+  position: sticky;
   box-shadow: none;
   transform: translateY(5px);
 }
@@ -292,7 +338,6 @@ h6 {
   margin: 0.2rem;
   font-size: 1rem;
   color: #9f9b9b;
-
   outline: none;
   border: none;
   font-weight: 700;
@@ -313,19 +358,8 @@ h6 {
   padding: 10px 20px;
   font-size: 1rem;
   color: #fff;
-
   font-weight: 600;
   border: none;
-
-  a.button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-
-    text-decoration: none;
-    color: initial;
-  }
-
   outline: none;
   border: none;
   font-weight: 700;
@@ -338,6 +372,15 @@ h6 {
   background-color: rgba(51, 51, 51, 0.5);
   background-color: #e50914;
 }
+
+a.btn-trailer {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+  color: initial;
+}
+
 .btn-trailer:hover {
   background-color: #f7dbf0;
   color: #000;
@@ -345,17 +388,18 @@ h6 {
   transition: transform 450ms;
   transform: scale(1.03);
 }
+
 .mainPage {
   margin-top: 240px;
   /* position:relative;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://wallpapercave.com/wp/wp5483697.jpg');
     /* background: url("https://wallpapercave.com/wp/wp5483697.jpg") center no-repeat; */
-
   /* background-size: cover;
 
   height: 100vh; */
   /* background: rgba(0, 0, 0, 0.4); */
 }
+
 .cards {
   display: grid;
   max-width: 1200px;
@@ -365,6 +409,7 @@ h6 {
   margin-top: 3em;
   margin-bottom: 2.5em;
 }
+
 @media (min-width: 600px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);
@@ -378,6 +423,7 @@ h6 {
 }
 
 /* Screen larger than 900px? 3 columns */
+
 @media (min-width: 900px) {
   .cards {
     grid-template-columns: repeat(3, 1fr);
@@ -390,19 +436,23 @@ h6 {
 .setup {
   background-color: #e50914;
 }
+
 .floatingButtons {
   bottom: 10px;
   position: absolute;
 }
-.ReviewButtons{
+
+.ReviewButtons {
   bottom: 30px;
   position: relative;
 }
+
 .paggination_wrapper {
   display: flex;
   justify-content: center;
   align-content: center;
 }
+
 .paggination {
   margin-bottom: 10px;
   display: flex;
@@ -410,8 +460,7 @@ h6 {
 
 body {
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://wallpapercave.com/wp/wp5483697.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://wallpapercave.com/wp/wp5483697.jpg");
   /* background: url("https://wallpapercave.com/wp/wp5483697.jpg") center no-repeat; */
   background-size: cover;
   place-content: center;
@@ -419,6 +468,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
 @media (max-width: 440px) {
   .navbar-brand {
     margin-right: 0rem;
@@ -426,21 +476,18 @@ body {
   .navbar-brand span {
     font-size: 1.2rem;
   }
-  .imageLogo{
+  .imageLogo {
     width: 30px;
   }
   .navbar-toggler {
     padding: .15rem .55rem;
     font-size: 1rem;
-   
-}
+  }
   .navbar-toggler-icon {
-   
     width: 1.2em;
     height: 1.2em;
   }
-  .navbar-nav{
+  .navbar-nav {
     margin-left: 0rem!important;
   }
-
 }
