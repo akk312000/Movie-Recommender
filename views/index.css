@@ -8,6 +8,7 @@ body::-webkit-scrollbar-thumb {
   background: #2c82f1;
 }
 .navbar {
+  position: unset !important;
   background: rgba(0, 0, 0, 0.856) !important;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.4rem;
@@ -18,6 +19,43 @@ body::-webkit-scrollbar-thumb {
 .nav-item{
   margin: 0 1.2rem;
 }
+
+.slider{
+  position:absolute;
+  width:100%;
+  height:4px;
+  overflow-x: hidden;
+}
+
+.line{
+  position:absolute;
+  opacity: 0.4;
+  background:#9f9f9f;
+  width:150%;
+  height:4px;
+}
+
+.subline{
+  position:absolute;
+  background:#ffffff;
+  height:4px; 
+}
+.inc{
+animation: increase 2s infinite;
+}
+.dec{
+animation: decrease 2s 0.5s infinite;
+}
+
+@keyframes increase {
+ from { left: -5%; width: 5%; }
+ to { left: 130%; width: 100%;}
+}
+@keyframes decrease {
+ from { left: -80%; width: 80%; }
+ to { left: 110%; width: 10%;}
+}
+
 
 
 /* .nav-header{
