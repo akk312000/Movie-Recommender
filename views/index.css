@@ -18,11 +18,15 @@ body::-webkit-scrollbar-thumb {
 }
 
 .navbar-brand span {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .nav-item {
   margin: 0 1.2rem;
+}
+
+.nav-link {
+  font-size: 1rem;
 }
 
 .slider {

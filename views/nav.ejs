@@ -135,6 +135,14 @@
             <% } %> href="/top">Top Rated Movies
         </a>
       </li>
+      <li class="nav-item" id="trs">
+        <a <% if (page_name==='top_rated_shows' ) { %>
+          class="nav-link active"
+          <%} else { %>
+            class="nav-link"
+            <% } %> href="/top_shows">Top Rated Shows
+        </a>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
       <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search a Title" aria-label="Search">
