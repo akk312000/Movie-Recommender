@@ -87,8 +87,11 @@
       </div>
     </div>
   </nav> -->
-
-
+<div class="slider" id="loader">
+  <div class="line"></div>
+  <div class="subline inc"></div>
+  <div class="subline dec"></div>
+</div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand " href="/">
     <img class="imageLogo" src="/images/icons8-movie-64.png" />
@@ -116,7 +119,7 @@
             <% } %> href="/shows">Shows
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" id="trending">
         <a <% if (page_name==='trendig' ) { %>
           class="nav-link active"
           <%} else { %>
@@ -124,7 +127,7 @@
             <% } %> href="/discover">Trending
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" id="trm">
         <a <% if (page_name==='top_rated_movies' ) { %>
           class="nav-link active"
           <%} else { %>
@@ -135,7 +138,7 @@
     </ul>
     <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
       <input class="form-control mr-sm-2" type="search" name="searchTerm" placeholder="Search a Title" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="nav-search">Search</button>
     </form>
   </div>
 </nav>
