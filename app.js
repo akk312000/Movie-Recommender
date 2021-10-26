@@ -170,7 +170,6 @@ app.post("/", urlencodedParser, async (req, res) => {
 });
 app.get("/discover", urlencodedParser, async (req, res) => {
 
-  const { searchTerm } = req.body;
   try {
     var response = await axios({
       method: "get",
@@ -329,7 +328,7 @@ app.get("/top_shows", urlencodedParser, async (req, res) => {
 });
 
 app.post("/search", urlencodedParser, async (req, res) => {
-  if(pageNo!=1)pageNo=1;
+  if(pageNo!==1)pageNo=1;
 
   const { searchTerm } = req.body;
   try {
