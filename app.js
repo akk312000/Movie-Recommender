@@ -275,6 +275,59 @@ app.get("/top", urlencodedParser, async (req, res) => {
   }
 });
 
+app.get("/top_shows", urlencodedParser, async (req, res) => {
+
+  try {
+    var response = await axios({
+      method: "get",
+      url: `https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&language=en-US&page`,
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    });
+
+    var finalresult = response.data.results;
+    const getReviews = [];
+    const getlink = [];
+    for (let i = 0; i < finalresult.length; i++) {
+      const getvideourl = await axios({
+        url: `https://api.themoviedb.org/3/tv/${finalresult[i].id}/videos?api_key=${apiKey}`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+      const getReview = await axios({
+        url: `https://api.themoviedb.org/3/tv/${finalresult[i].id}/reviews?api_key=${apiKey}&language=en-US&page=1`,
+        method: "GET",
+        headers:{
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      });
+        const reviews = [];
+        for(let j = 0; j < 3; j++){
+          reviews.push(getReview.data.results[j]?.url);
+        }
+      getReviews[i] = reviews;
+      getlink.push(getvideourl.data.results[0]?.key);
+    }
+
+    if (finalresult.entries({}).length === 0) {
+      res.render("error");
+    } else {
+      res.render("showTopRatedShows", {
+        finalresult: finalresult,
+        getReviews: getReviews,
+        getlink: getlink,
+        genreId: genreId,
+      });
+    }
+
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 app.post("/search", urlencodedParser, async (req, res) => {
   if(pageNo!=1)pageNo=1;
 
